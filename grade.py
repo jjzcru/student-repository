@@ -3,8 +3,23 @@
 """
 import os
 from pathlib import Path
-from typing import List
+from typing import List, Dict
 from enum import Enum
+
+grade_value_map: Dict[str, float] = {
+    "A":    4.0,
+    "A-": 	3.75,
+    "B+": 	3.25,
+    "B": 	3.0,
+    "B-": 	2.75,
+    "C+": 	2.25,
+    "C": 	2.0,
+    "C-": 	0,
+    "D+": 	0,
+    "D": 	0,
+    "D-": 	0,
+    "F": 	0
+}
 
 
 class GetBy(Enum):
@@ -113,8 +128,21 @@ class Grades:
 
         raise ValueError(f"{by} is not a supported get value")
 
+    def get_student_gpa(self, cwid: str) -> float:
+        # Function that receives an student cwid and return its GPA
+        grades: List[Grade] = self.get(GetBy.STUDENT, cwid)
+        # The student do not have any grade
+        if len(grades) == 0:
+            return 0
+
+        # We get the value from the map and calculate the average
+        return sum([
+            grade_value_map[grade.grade]
+            for grade in grades
+        ])/len(grades)
+
     @staticmethod
-    def from_file(file_path: str) -> List[Grade]:
+    def from_file(file_path: str, ignore_header: bool = False) -> List[Grade]:
         # Get a list of grades from a file
         grades: List[Grade] = []
         if type(file_path) != str:
@@ -134,11 +162,14 @@ class Grades:
                     line = line.strip("\n")
                     line_counter += 1
 
+                    if ignore_header and line_counter == 1:
+                        continue
+
                     # Skip empty lines
                     if len(line) == 0:
                         continue
 
-                    terms: List[str] = line.split("\t") if len(line) > 0 else []
+                    terms: List[str] = line.split("|") if len(line) > 0 else []
 
                     if len(terms) != 4:
                         raise ValueError(
