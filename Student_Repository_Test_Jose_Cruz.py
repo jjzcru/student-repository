@@ -332,6 +332,7 @@ class UniversityTest(unittest.TestCase):
         repository.display_major_summary()
 
     def test_student_summary(self):
+        """Test that validates students summary"""
         dir_path: str = "./support"
         repository: University = University(dir_path)
         self.assertEqual(len(repository.get_students()), 11)
@@ -342,6 +343,7 @@ class UniversityTest(unittest.TestCase):
         repository.display_student_summary()
 
     def test_instructor_summary(self):
+        """Test that validates instructor summary"""
         dir_path: str = "./support"
         repository: University = University(dir_path)
         summary: List[Tuple[str, str, str, str, int]] = \

@@ -51,3 +51,30 @@ Your assignment  this week has three components:
 - [X] Implement [automated tests](https://github.com/jjzcru/student-repository/blob/HW10/Student_Repository_Test_Jose_Cruz.py)
   to verify that the data in the prettytables matches the data from the input 
   data files. 
+  
+## Deliverables
+1. The URL of your GitHub repository showing two branches: one for the HW09 
+   code and this week's HW10 code.  Your repository should include all of 
+   the data files needed to run your solution.  Just include the URL in your 
+   submission comments.
+2. An updated Student summary table with the student's CWID, name, major, 
+   completed courses, remaining courses, and remaining electives, and GPA
+3. An instructor summary table (no changes from HW09)
+4. A Major summary table with the name of the major, the required  courses, 
+   and the electives for that major 
+   
+## Design Decisions
+1. There are no interdependencies between the program dependencies, if i add 
+them it would make the program harder to test.
+2. Since I don't know the entire scope of the program or how is going to 
+evolve I'm keeping the primitives as slim as possible.
+3. I'm making a conscious decision of using more references to other objects, 
+than storing the actual object values inside other primitives. *E.g. I'm not
+creating a dependency between Student and Grades, inside Grades I provide 
+functions to search grades base on values*.
+4. **University** handles:
+    1. Input validation for the program
+    2. Data integrity checks
+    3. Adhoc queries to dependencies   
+    4. Data wiring between objects
+    5. Output of the program

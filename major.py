@@ -1,5 +1,5 @@
 """
-    Handles everything related to university students
+    Handles everything related to university majors
 """
 import os
 from pathlib import Path
