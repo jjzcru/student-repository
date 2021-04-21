@@ -19,7 +19,7 @@ import grade
 from grade import Grades, Grade
 import major
 from major import Major, Majors, Course
-from HW10_Jose_Cruz import University
+from Student_Repository_Jose_Cruz import University
 
 
 class StudentsTest(unittest.TestCase):
