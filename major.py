@@ -130,7 +130,7 @@ class Majors:
             raise ValueError(f"the path {file_path} is not a file")
 
         line_counter: int = 0
-        majors_dict: Dict[str, List[Course]] = defaultdict()
+        majors_dict: Dict[str, List[Course]] = {}
         try:
             with open(file_path, "r") as file:
                 for line in file.readlines():
@@ -149,16 +149,21 @@ class Majors:
                         raise ValueError(
                             f"expect {3} fields but {len(terms)} were found")
 
-                    if terms[1] != "R" and terms[1] != "E":
+                    value_major: str = terms[0]
+                    value_flag: str = terms[1]
+                    value_course: str = terms[2]
+
+                    if value_flag != "R" and value_flag != "E":
                         raise ValueError(
-                            f"{terms[1]} is an invalid flag value for course")
+                            f"{value_flag} is an invalid flag value for course")
 
-                    if majors_dict.get(terms[0]) is None:
-                        majors_dict[terms[0]] = [Course(terms[2],
-                                                        terms[1] == "R")]
+                    if majors_dict.get(value_major) is None:
+                        majors_dict[value_major] = [Course(value_course,
+                                                           value_flag == "R")]
+                        continue
 
-                    majors_dict[terms[0]].append(Course(terms[2],
-                                                        terms[1] == "R"))
+                    majors_dict[value_major].append(Course(value_course,
+                                                           value_flag == "R"))
                 else:
                     file.close()
         except IOError as e:

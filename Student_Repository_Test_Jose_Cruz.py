@@ -1,4 +1,4 @@
-"""HW05: University Repository
+"""HW10: University Repository
 
     CONVENTIONS:
     - Max character limit per line 80
@@ -213,13 +213,13 @@ class MajorsTest(unittest.TestCase):
     def test_major(self) -> None:
         # Test grade object
         with self.assertRaises(TypeError):
-            Major(0, 'Test', 'X')
+            Major(0, 'Test')
 
         with self.assertRaises(ValueError):
-            Major('', 'Test', 'test')
+            Major('', 'Test')
 
         with self.assertRaises(TypeError):
-            Major('123', 'Test', [])
+            Major('123', 'Test')
 
     def test_from_file(self) -> None:
         # Test getting a list of student from file
@@ -240,11 +240,32 @@ class MajorsTest(unittest.TestCase):
 
         self.assertEqual(len(majors), 2)
         expected_result: List[Major] = [
-            Major("SFEN", Course("SSW 540", True)),
+            Major("SFEN", [
+                Course("SSW 540", True),
+                Course("SSW 564", True),
+                Course("SSW 555", True),
+                Course("SSW 567", True),
+                Course("CS 501", False),
+                Course("CS 513", False),
+                Course("CS 545", False),
+            ]),
+            Major("SYEN", [
+                Course("SYS 671", True),
+                Course("SYS 612", True),
+                Course("SYS 800", True),
+                Course("SSW 810", False),
+                Course("SSW 565", False),
+                Course("SSW 540", False),
+            ]),
         ]
-        for i in range(len(majors[0:3])):
-            self.assertEqual(majors[i].name,
-                             expected_result[i].name)
+        for i in range(len(majors)):
+            m: Major = majors[i]
+            expected_m: Major = expected_result[i]
+            self.assertEqual(m.name, expected_m.name)
+            for j in range(len(m.courses)):
+                self.assertEqual(m.courses[j].name, expected_m.courses[j].name)
+                self.assertEqual(m.courses[j].is_required,
+                                 expected_m.courses[j].is_required)
 
     def test_repository(self) -> None:
         # Test repository functionalities
