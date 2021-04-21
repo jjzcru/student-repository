@@ -9,3 +9,4 @@ CWID;Name;Major
 11658;Kelly, P;SYEN
 11714;Morton, A;SYEN
 11788;Fuller, E;SYEN
+11789;Cruz, J;SFEN

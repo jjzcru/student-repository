@@ -41,7 +41,7 @@ class StudentsTest(unittest.TestCase):
 
         students: List[Student] = Students.from_file(file_path, True)
 
-        self.assertEqual(len(students), 10)
+        self.assertEqual(len(students), 11)
         expected_result: List[Student] = [
             Student("10103", "Baldwin, C", "SFEN"),
             Student("10115", "Wyatt, X", "SFEN"),
@@ -53,6 +53,7 @@ class StudentsTest(unittest.TestCase):
             Student("11658", "Kelly, P", "SYEN"),
             Student("11714", "Morton, A", "SYEN"),
             Student("11788", "Fuller, E", "SYEN"),
+            Student("11789", "Cruz, J", "SFEN"),
         ]
         for i in range(len(students)):
             self.assertEqual(students[i].cwid, expected_result[i].cwid)
@@ -66,14 +67,14 @@ class StudentsTest(unittest.TestCase):
         students: List[Student] = Students.from_file(file_path, True)
         repository: Students = Students(students)
 
-        self.assertEqual(len(repository.all()), 10)
+        self.assertEqual(len(repository.all()), 11)
         expected: Student = Student("10103", "Baldwin, C", "SFEN")
 
         learner: Student = repository.get(student.GetBy.ID, "10103")
         self.assertEqual(expected.cwid, learner.cwid)
         self.assertEqual(expected.name, learner.name)
         self.assertEqual(expected.major, learner.major)
-        self.assertEqual(len(repository.get(student.GetBy.MAJOR, "SFEN")), 5)
+        self.assertEqual(len(repository.get(student.GetBy.MAJOR, "SFEN")), 6)
         self.assertEqual(len(repository.get(student.GetBy.MAJOR, "SYEN")), 5)
         with self.assertRaises(ValueError):
             repository.get(student.GetBy.ID, "TEST")
@@ -108,7 +109,6 @@ class InstructorsTest(unittest.TestCase):
             Instructor("98762", "Hawking, S", "SYEN"),
             Instructor("98761", "Edison, A", "SYEN"),
             Instructor("98760", "Darwin, C", "SYEN"),
-
         ]
         for i in range(len(instructors)):
             self.assertEqual(instructors[i].cwid, expected_result[i].cwid)
@@ -147,13 +147,13 @@ class GradesTest(unittest.TestCase):
     def test_grade(self) -> None:
         # Test grade object
         with self.assertRaises(TypeError):
-            Grade(0, 'Test', 'X', [])
+            Grade(0, "Test", "X", [])
 
         with self.assertRaises(ValueError):
-            Grade('', 'Test', 'test', '12345')
+            Grade("", "Test", "test", "12345")
 
         with self.assertRaises(ValueError):
-            Grade('123', 'Test', 'X', '12345')
+            Grade("123", "Test", "X", "12345")
 
     def test_from_file(self) -> None:
         # Test getting a list of student from file
@@ -211,13 +211,13 @@ class MajorsTest(unittest.TestCase):
     def test_major(self) -> None:
         # Test grade object
         with self.assertRaises(TypeError):
-            Major(0, 'Test')
+            Major(0, "Test")
 
         with self.assertRaises(ValueError):
-            Major('', 'Test')
+            Major("", "Test")
 
         with self.assertRaises(TypeError):
-            Major('123', 'Test')
+            Major("123", "Test")
 
     def test_from_file(self) -> None:
         # Test getting a list of student from file
@@ -284,6 +284,7 @@ class UniversityTest(unittest.TestCase):
         # Test repository functionalities
         non_dir_path: str = "./support/instructors.txt"
         non_existing_dir_path: str = "./test"
+        dir_path: str = "./support"
 
         with self.assertRaises(TypeError):
             University(0)
@@ -294,23 +295,50 @@ class UniversityTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             University(non_dir_path)
 
+        University(dir_path)
+
+    def test_major_summary(self):
+        """Test that validates majors summary"""
+        dir_path: str = "./support"
+        repository: University = University(dir_path)
+        majors: List[Tuple[str, List[str], List[str]]] = \
+            repository.get_major_summary()
+        self.assertEqual(len(majors), 2)
+        expected: List[Tuple[str, List[str], List[str]]] = \
+            [
+                (
+                    "SFEN",
+                    ["SSW 540", "SSW 555", "SSW 564", "SSW 567"],
+                    ["CS 501", "CS 513", "CS 545"]
+                ),
+                (
+                    "SYEN",
+                    ["SYS 612", "SYS 671", "SYS 800"],
+                    ["SSW 540", "SSW 565", "SSW 810"]
+                )
+            ]
+
+        for i in range(len(majors)):
+            name, req_courses, el_courses = majors[i]
+            exp_name, exp_req_courses, exp_el_electives = expected[i]
+            self.assertEqual(name, exp_name)
+            for j in range(len(exp_req_courses)):
+                self.assertEqual(req_courses[j], exp_req_courses[j])
+
+            for j in range(len(el_courses)):
+                self.assertEqual(el_courses[j], exp_el_electives[j])
+
+        print("\nMajors Summary")
+        repository.display_major_summary()
+
     def test_student_summary(self):
         dir_path: str = "./support"
         repository: University = University(dir_path)
-        self.assertEqual(len(repository.get_students()), 10)
+        self.assertEqual(len(repository.get_students()), 11)
         summary: List[Tuple[str, str, List[str]]] = \
             repository.get_student_summary()
-        self.assertEqual(len(summary), 10)
-        # TODO Fix this validation
-        """expected: List[Tuple[str, str, List[str]]] = [
-            ("10103", "Baldwin, C", ["CS 501", "SSW 564", "SSW 567",
-                                     "SSW 687"]),
-            ("10115", "Wyatt, X", ["CS 545", "SSW 564", "SSW 567", "SSW 687"]),
-            ("10172", "Forbes, I", ["SSW 555", "SSW 567"])
-        ]
-        for i in range(len(summary[0:3])):
-            self.assertEqual(summary[i], expected[i])"""
-        print('Student Summary')
+        self.assertEqual(len(summary), 11)
+        print("\nStudent Summary")
         repository.display_student_summary()
 
     def test_instructor_summary(self):
@@ -328,42 +356,8 @@ class UniversityTest(unittest.TestCase):
         self.assertEqual(len(summary), 12)
         for i in range(len(summary[0:3])):
             self.assertEqual(summary[i], expected[i])
-        print('Instructor Summary')
+        print("\nInstructor Summary")
         repository.display_instructor_summary()
-
-    def test_major_summary(self):
-        """Test that validates majors summary"""
-        dir_path: str = "./support"
-        repository: University = University(dir_path)
-        majors: List[Tuple[str, List[str], List[str]]] = \
-            repository.get_major_summary()
-        self.assertEqual(len(majors), 2)
-        expected: List[Tuple[str, List[str], List[str]]] = \
-            [
-                (
-                    "SFEN",
-                    ["SSW 540", "SSW 555", "SSW 564", "SSW 567"],
-                    ['CS 501', 'CS 513', 'CS 545']
-                ),
-                (
-                    "SYEN",
-                    ['SYS 612', 'SYS 671', 'SYS 800'],
-                    ['SSW 540', 'SSW 565', 'SSW 810']
-                )
-            ]
-
-        for i in range(len(majors)):
-            name, req_courses, el_courses = majors[i]
-            exp_name, exp_req_courses, exp_el_electives = expected[i]
-            self.assertEqual(name, exp_name)
-            for j in range(len(exp_req_courses)):
-                self.assertEqual(req_courses[j], exp_req_courses[j])
-
-            for j in range(len(el_courses)):
-                self.assertEqual(el_courses[j], exp_el_electives[j])
-
-        print('Majors Summary')
-        repository.display_major_summary()
 
 
 if __name__ == "__main__":

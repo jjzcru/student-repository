@@ -6,7 +6,8 @@
       <change beforePath="$PROJECT_DIR$/Student_Repository_Jose_Cruz.py" beforeDir="false" afterPath="$PROJECT_DIR$/Student_Repository_Jose_Cruz.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Student_Repository_Test_Jose_Cruz.py" beforeDir="false" afterPath="$PROJECT_DIR$/Student_Repository_Test_Jose_Cruz.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grade.py" beforeDir="false" afterPath="$PROJECT_DIR$/grade.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/major.py" beforeDir="false" afterPath="$PROJECT_DIR$/major.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student.py" beforeDir="false" afterPath="$PROJECT_DIR$/student.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/students.txt" beforeDir="false" afterPath="$PROJECT_DIR$/support/students.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,21 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_major_summary">
-    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="student-repository" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.UniversityTest&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests in Student_Repository_Test_Jose_Cruz.py">
     <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_init" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="student-repository" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -97,13 +84,27 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in Student_Repository_Test_Jose_Cruz.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="student-repository" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/Student_Repository_Test_Jose_Cruz.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_major_summary" />
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_instructor_summary" />
+        <item itemvalue="Python tests.Unittests in Student_Repository_Test_Jose_Cruz.py" />
         <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_student_summary" />
         <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_init" />
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest" />
+        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_major_summary" />
+        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_instructor_summary" />
       </list>
     </recent_temporary>
   </component>

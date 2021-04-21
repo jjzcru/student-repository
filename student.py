@@ -16,13 +16,14 @@ class GetBy(Enum):
 
 class Student:
     # Represents student object
-    __slots__ = ["cwid", "name", "major"]
+    __slots__ = ["cwid", "name", "major", "is_new"]
 
     def __init__(self, cwid: str, name: str, major: str) -> None:
         # Initialize student object
         self.cwid = cwid
         self.name = name
         self.major = major
+        self.is_new = True
         self.__validate()
 
     def __validate(self):

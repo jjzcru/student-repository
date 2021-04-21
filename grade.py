@@ -3,7 +3,7 @@
 """
 import os
 from pathlib import Path
-from typing import List, Dict
+from typing import List, Dict, Optional
 from enum import Enum
 
 grade_value_map: Dict[str, float] = {
@@ -139,12 +139,12 @@ class Grades:
 
         raise ValueError(f"{by} is not a supported get value")
 
-    def get_student_gpa(self, cwid: str) -> float:
+    def get_student_gpa(self, cwid: str) -> Optional[float]:
         # Function that receives an student cwid and return its GPA
         grades: List[Grade] = self.get(GetBy.STUDENT, cwid)
         # The student do not have any grade
         if len(grades) == 0:
-            return 0
+            return None
 
         # We get the value from the map and calculate the average
         return sum([

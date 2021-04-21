@@ -12,7 +12,7 @@
 import os
 from pathlib import Path
 from collections import defaultdict
-from typing import List, Dict, Tuple, Set, Union
+from typing import List, Dict, Tuple, Set, Union, Optional
 from prettytable import PrettyTable
 import instructor
 from instructor import Instructors, Instructor
@@ -109,6 +109,13 @@ class University:
             self.instructors.get(instructor.GetBy.ID, item.professor_id)
             self.students.get(student.GetBy.ID, item.student_id)
 
+        for s in self.get_students():
+            try:
+                self.majors.get(s.major)
+            except ValueError:
+                raise ValueError(f"student CWID ({s.cwid}) have an invalid "
+                                 f"major: '{s.major}'")
+
     def get_instructors(self) -> List[Instructor]:
         # Return a list of all the instructors in the university
         return [item for _, item in self.instructors.all().items()]
@@ -142,16 +149,23 @@ class University:
             List[str],
             List[str],
             List[str],
-            float
+            Optional[float]
         ]] = []
 
         for learner in self.get_students():
-            courses: List[str] = [item.course for item in
-                                  self.grades.get(grade.GetBy.STUDENT,
-                                                  learner.cwid)
-                                  if item.is_passing_grade()]
+            graded_courses = [item.course for item in
+                              self.grades.get(grade.GetBy.STUDENT,
+                                              learner.cwid)]
+            passed_courses: List[str] = [item.course for item in
+                                         self.grades.get(grade.GetBy.STUDENT,
+                                                         learner.cwid)
+                                         if item.is_passing_grade()]
 
-            gpa: float = self.grades.get_student_gpa(learner.cwid)
+            if len(graded_courses) > 0:
+                learner.is_new = False
+
+            gpa: Optional[float] = self.grades.get_student_gpa(learner.cwid)
+
             # Get a list of all the courses from the major
             major_courses: List[Course] = self.majors.get(learner.major).courses
 
@@ -173,7 +187,7 @@ class University:
             )
 
             # Transform all the completed course to a set
-            completed_courses: Set[str] = set(courses)
+            completed_courses: Set[str] = set(passed_courses)
 
             """
                 Do a set difference between the major courses and the 
@@ -218,29 +232,92 @@ class University:
 
     def display_student_summary(self) -> None:
         """Display the summary as a table"""
-        table = PrettyTable()
-        table.field_names = [
-            "CWID",
-            "Name",
-            "Major",
-            "Completed Courses",
-            "Remaining Required",
-            "Remaining Elective",
-            "GPA"
-        ]
 
-        for cwid, name, m, courses, remaining_req, remaining_ele, gpa in \
-                self.get_student_summary():
-            table.add_row([
-                cwid,
-                name,
-                m,
-                courses,
-                remaining_req,
-                remaining_ele,
-                round(gpa, 2)
-            ])
-        print(table)
+        summary: List[Tuple[
+            str,
+            str,
+            str,
+            List[str],
+            List[str],
+            List[str],
+            float]
+        ] = self.get_student_summary()
+
+        students_with_gpa: List[Tuple[
+            str,
+            str,
+            str,
+            List[str],
+            List[str],
+            List[str],
+            float]
+        ] = sorted(
+            [s for s in summary if s[6] is not None],
+            key=lambda s: s[6],
+            reverse=True
+        )
+
+        new_students: List[Tuple[
+            str,
+            str,
+            str,
+            List[str],
+            List[str],
+            List[str],
+            float]
+        ] = [s for s in summary if s[6] is None]
+
+        if len(students_with_gpa):
+            print("\nStudents with GPA")
+            table: PrettyTable = PrettyTable()
+            table.field_names = [
+                "CWID",
+                "Name",
+                "Major",
+                "Completed Courses",
+                "Remaining Required",
+                "Remaining Elective",
+                "GPA"
+            ]
+
+            for cwid, name, m, courses, remaining_req, remaining_ele, gpa in \
+                    students_with_gpa:
+                table.add_row([
+                    cwid,
+                    name,
+                    m,
+                    courses,
+                    remaining_req,
+                    remaining_ele,
+                    round(gpa, 2)
+                ])
+            print(table)
+
+        if len(new_students) > 0:
+            print("\nNew Students (Do not have GPA)")
+            table: PrettyTable = PrettyTable()
+            table.field_names = [
+                "CWID",
+                "Name",
+                "Major",
+                "Completed Courses",
+                "Remaining Required",
+                "Remaining Elective",
+                "GPA"
+            ]
+
+            for cwid, name, m, courses, remaining_req, remaining_ele, gpa in \
+                    new_students:
+                table.add_row([
+                    cwid,
+                    name,
+                    m,
+                    "N/A",
+                    remaining_req,
+                    remaining_ele,
+                    "N/A"
+                ])
+            print(table)
 
     def get_instructor_summary(self) -> List[Tuple[str, str, str, str, int]]:
         # Calculate the instructor for instructors
@@ -280,8 +357,10 @@ class University:
             "Course",
             "Students"
         ]
+        summary: List[Tuple[str, str, str, str, int]] = \
+            self.get_instructor_summary()
 
-        for cwid, name, dept, course, students in self.get_instructor_summary():
+        for cwid, name, dept, course, students in summary:
             table.add_row([cwid, name, dept, course, students])
         print(table)
 
