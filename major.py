@@ -106,7 +106,7 @@ class Majors:
 
     def all(self) -> List[Major]:
         # Return all the students
-        return self.__majors
+        return [m for k, m in self.__majors.items()]
 
     def get(self, name: str) -> Major:
         major: Optional[Major] = self.__majors.get(name)

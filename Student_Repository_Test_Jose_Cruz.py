@@ -331,11 +331,37 @@ class UniversityTest(unittest.TestCase):
         print('Instructor Summary')
         repository.display_instructor_summary()
 
-    # TODO Complete test
     def test_major_summary(self):
+        """Test that validates majors summary"""
         dir_path: str = "./support"
         repository: University = University(dir_path)
-        self.assertEqual(len(repository.get_majors()), 2)
+        majors: List[Tuple[str, List[str], List[str]]] = \
+            repository.get_major_summary()
+        self.assertEqual(len(majors), 2)
+        expected: List[Tuple[str, List[str], List[str]]] = \
+            [
+                (
+                    "SFEN",
+                    ["SSW 540", "SSW 555", "SSW 564", "SSW 567"],
+                    ['CS 501', 'CS 513', 'CS 545']
+                ),
+                (
+                    "SYEN",
+                    ['SYS 612', 'SYS 671', 'SYS 800'],
+                    ['SSW 540', 'SSW 565', 'SSW 810']
+                )
+            ]
+
+        for i in range(len(majors)):
+            name, req_courses, el_courses = majors[i]
+            exp_name, exp_req_courses, exp_el_electives = expected[i]
+            self.assertEqual(name, exp_name)
+            for j in range(len(exp_req_courses)):
+                self.assertEqual(req_courses[j], exp_req_courses[j])
+
+            for j in range(len(el_courses)):
+                self.assertEqual(el_courses[j], exp_el_electives[j])
+
         print('Majors Summary')
         repository.display_major_summary()
 

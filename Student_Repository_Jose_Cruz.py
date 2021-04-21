@@ -104,6 +104,7 @@ class University:
 
     def __validate_data_integrity(self) -> None:
         """Validate that all the professor and student reference exists"""
+
         for item in self.grades.all():
             self.instructors.get(instructor.GetBy.ID, item.professor_id)
             self.students.get(student.GetBy.ID, item.student_id)
@@ -147,7 +148,8 @@ class University:
         for learner in self.get_students():
             courses: List[str] = [item.course for item in
                                   self.grades.get(grade.GetBy.STUDENT,
-                                                  learner.cwid)]
+                                                  learner.cwid)
+                                  if item.is_passing_grade()]
 
             gpa: float = self.grades.get_student_gpa(learner.cwid)
             # Get a list of all the courses from the major
@@ -205,13 +207,14 @@ class University:
 
     def get_major_summary(self) -> List[Tuple[str, List[str], List[str]]]:
         # Calculate the summary for majors
+        majors: List[Major] = self.get_majors()
         return [(
             m.name,
             sorted([course.name
                     for course in m.get_course(major.GetBy.TYPE, True)]),
             sorted([course.name
                     for course in m.get_course(major.GetBy.TYPE, False)])
-        ) for m in self.get_majors()]
+        ) for m in majors]
 
     def display_student_summary(self) -> None:
         """Display the summary as a table"""
@@ -269,6 +272,7 @@ class University:
     def display_instructor_summary(self) -> None:
         """Display the summary as a table"""
         table = PrettyTable()
+
         table.field_names = [
             "CWID",
             "Name",

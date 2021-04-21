@@ -31,7 +31,13 @@ class GetBy(Enum):
 
 class Grade:
     # Represents grade  object
-    __slots__ = ["student_id", "course", "grade", "professor_id"]
+    __slots__ = [
+        "student_id",
+        "course",
+        "grade",
+        "professor_id",
+        "__is_passing_grade"
+    ]
 
     def __init__(self, student_id: str, course: str, grade: str,
                  professor_id: str) -> None:
@@ -41,6 +47,7 @@ class Grade:
         self.course = course
         self.professor_id = professor_id
         self.__validate()
+        self.__is_passing_grade = grade_value_map.get(self.grade)
 
     def __validate(self):
         # Validate input information
@@ -89,6 +96,10 @@ class Grade:
                 grade != "A" and \
                 grade != "A+":
             raise ValueError(f"the letter {grade} is an invalid grade")
+
+    def is_passing_grade(self):
+        # Return if the grade is passing or not
+        return self.__is_passing_grade
 
 
 class Grades:
