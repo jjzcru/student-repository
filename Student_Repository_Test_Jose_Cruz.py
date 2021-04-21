@@ -17,7 +17,7 @@ import student
 from student import Students, Student
 import grade
 from grade import Grades, Grade
-from HW09_Jose_Cruz import University
+from Student_Repository_Jose_Cruz import University
 
 
 class StudentsTest(unittest.TestCase):
