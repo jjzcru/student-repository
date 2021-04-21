@@ -14,9 +14,8 @@ Your assignment  this week has three components:
     GPA in the Student prettytable.
      
   3. Add a new feature to your solution to update the Student prettytable to 
-     show the remaining required and elective courses for each student.  
-     This requires information about required courses and 
-     electives for each major.
+     show the remaining required and elective courses for each student. *This 
+     requires information about required courses and electives for each major.*
      
 ## TODO
 - [X] Create a GitHub repository for your Student Repository. This requires 
