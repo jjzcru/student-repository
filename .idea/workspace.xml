@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7af9a45c-53ba-497a-909b-5677a91791d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Student_Repository_Test_Jose_Cruz.py" beforeDir="false" afterPath="$PROJECT_DIR$/Student_Repository_Test_Jose_Cruz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/major.py" beforeDir="false" afterPath="$PROJECT_DIR$/major.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +23,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.MajorsTest.test_from_file">
-    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.GradesTest.test_from_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_init">
+    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.GradesTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="student-repository" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -36,11 +34,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.GradesTest.test_from_file&quot;" />
+      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.GradesTest&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.GradesTest.test_grade" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.InstructorsTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="student-repository" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -50,11 +48,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.GradesTest.test_grade&quot;" />
+      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.InstructorsTest&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.InstructorsTest.test_repository" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.MajorsTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="student-repository" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -64,11 +62,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.InstructorsTest.test_repository&quot;" />
+      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.MajorsTest&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.MajorsTest.test_from_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.StudentsTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="student-repository" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -78,11 +76,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.MajorsTest.test_from_file&quot;" />
+      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.StudentsTest&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.MajorsTest.test_major" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_init" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="student-repository" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -92,17 +90,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.MajorsTest.test_major&quot;" />
+      <option name="_new_target" value="&quot;Student_Repository_Test_Jose_Cruz.UniversityTest.test_init&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.MajorsTest.test_from_file" />
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.MajorsTest.test_major" />
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.GradesTest.test_from_file" />
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.GradesTest.test_grade" />
-        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.InstructorsTest.test_repository" />
+        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.UniversityTest.test_init" />
+        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.MajorsTest" />
+        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.GradesTest" />
+        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.InstructorsTest" />
+        <item itemvalue="Python tests.Unittests for Student_Repository_Test_Jose_Cruz.StudentsTest" />
       </list>
     </recent_temporary>
   </component>
@@ -116,16 +114,5 @@
       <updated>1618976945354</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Student_Repository_Test_Jose_Cruz.py</url>
-          <line>260</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
